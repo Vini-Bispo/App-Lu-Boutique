@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, Alert, Image, TouchableOpacity, Button } from 'react-native';
+import { SafeAreaView, View, Text, TextInput, StyleSheet, Alert, Image, TouchableOpacity, Button } from 'react-native';
 import { useRouter } from 'expo-router'; // Importa o hook useRouter do expo-router
+
+// ocultar titulo da página apenas neste arquivo
+// export const screenOptions = {
+//   headerShown: false,  // sem header aqui
+// };
 
 export default function Login(){
   const router = useRouter(); // Inicializa o roteador
@@ -19,13 +24,13 @@ export default function Login(){
       setTimeout(() => {
       setIsLoading(false);
       Alert.alert('Sucesso', 'Login realizado com sucesso');
-      router.push('/screens/home'); // Navega para a tela inicial após o login
+      router.push('./home'); // Navega para a tela inicial após o login
       }, 2000);
     }
   };
 
 return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.logoContainer}>
         <Image
           source={require('@/assets/images/LogoLuBoutique.png')}
@@ -73,7 +78,7 @@ return (
             <Text style={styles.buttonText}>Entrar</Text>
           </TouchableOpacity> */}
 
-            <TouchableOpacity style={styles.button} onPress={handleLogin} disabled={isLoading}>
+          <TouchableOpacity style={styles.button} onPress={handleLogin} disabled={isLoading}>
             {isLoading ? <Text style={styles.buttonText}>Carregando...</Text> : <Text style={styles.buttonText}>Entrar</Text>}
           </TouchableOpacity>
 
@@ -91,7 +96,7 @@ return (
       <View style={styles.footer}>
         <Text style={styles.footerText}>© 2025 Lu Boutique - Todos os direitos reservados</Text>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
