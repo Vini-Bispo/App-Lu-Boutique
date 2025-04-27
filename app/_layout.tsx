@@ -8,7 +8,7 @@ import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
+// Evita esconder o SplashScreen antes do app estar pronto
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
@@ -29,9 +29,11 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
+      <Stack initialRouteName="login">
+        {/* Defina a tela de Login como a tela inicial */}
+        <Stack.Screen name="login" options={{ title: 'Login' }} />
+        <Stack.Screen name="screens/home" options={{ title: 'Home' }} />
+        <Stack.Screen name="+not-found" options={{ title: 'Página Não Encontrada' }} />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
